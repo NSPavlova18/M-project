@@ -107,11 +107,11 @@ int main()
 			cin >> choiceC;
 			switch (choiceC)
 			{
-			case 'x': 
+			case 'x':
 			{
 				cout << "Choose array size (not bigger than 10) = ";
 				cin >> n;
-				if (n > 10) { cout << "Value is too large"; }
+				if (n < 0 or n > 10) { cout << "Invalid value"; << endl; }
 				else
 				{
 					cout << "Choose array elements = ";
@@ -129,7 +129,7 @@ int main()
 			{
 				cout << "Choose array size (not bigger than 10) = ";
 				cin >> m;
-				if (m > 10) { cout << "Value is too large"; }
+				if (m < 0 or m > 10) { cout << "Invalid value" << endl; }
 				else
 				{
 					cout << "Choose array elements = ";
@@ -149,15 +149,19 @@ int main()
 		}
 		case 1: //operations with arrays
 		{
-			choice = operationMenu();
-			switch (choice)
+			if (n <= 0 or m <= 0 or n > 10 or m > 10) { cout << "Both arrays need to have elements" << endl; }
+			else
 			{
-			case 0: xandy(x, y, n, m); break; //outputs if a number is in both
-			case 1: xplusy(x, y, n, m); break; //outputs if a number is in at least one of them
-			case 2: xminusy(x, y, n, m); break; //outputs if a number is not in y
-			case 3: yminusx(x, y, n, m); break; //outputs if a number is not in x
-			case 8: break; //goes back to main menu
-			default: cout << "Invalid input" << endl; break; //outputs for invalid input
+				choice = operationMenu();
+				switch (choice)
+				{
+				case 0: xandy(x, y, n, m); break; //outputs if a number is in both
+				case 1: xplusy(x, y, n, m); break; //outputs if a number is in at least one of them
+				case 2: xminusy(x, y, n, m); break; //outputs if a number is not in y
+				case 3: yminusx(x, y, n, m); break; //outputs if a number is not in x
+				case 8: break; //goes back to main menu
+				default: cout << "Invalid input" << endl; break; //outputs for invalid input
+				}
 			}
 			break;
 		}
@@ -167,8 +171,18 @@ int main()
 			cin >> choiceC;
 			switch (choiceC)
 			{
-			case 'x': sortMenu(x, n); cout << "Array x sorted!" << endl; break;
-			case 'y': sortMenu(y, m); cout << "Array y sorted!" << endl; break;
+			case 'x':
+			{
+				if (n <= 0 or n > 10) { cout << "Array x has no elements" << endl; }
+				else { sortMenu(x, n); cout << "Array x sorted!" << endl; }
+				break;
+			}
+			case 'y':
+			{
+				if (m <= 0 or m > 10) { cout << "Array y has no elements" << endl; }
+				else { sortMenu(y, m); cout << "Array y sorted!" << endl; }
+				break;
+			}
 			case '8': break;
 			default: cout << "Invalid input" << endl; break;
 			}
@@ -185,10 +199,13 @@ int main()
 			case '8': break;
 			default: cout << "Invalid input" << endl; break;
 			}
+			break;
 		}
 		case 4: //outputs the team members (WIP), front end dev here
 		case 9: break; //stops the program
 		default: cout << "Invalid input" << endl; //outputs for invalid input
 		}
+		n = sizeof(x) / sizeof(x[0]);
+		m = sizeof(y) / sizeof(y[0]);
 	}
 }
