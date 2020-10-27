@@ -15,7 +15,7 @@ int operationMenu() //front end dev, a menu with operations
 	return x;
 }
 
-void xandy(int* x, int* y, int n, int m) 
+void xandy(int* x, int* y, int n, int m)
 {
 	bool answer = false;
 	cout << "x U y = ";
@@ -67,7 +67,7 @@ void yminusx(int* x, int* y, int n, int m)
 	cout << endl;
 }
 
-void sortMenu(int *x, int n) //front end dev, menu stuff again
+void sortMenu(int* x, int n) //front end dev, menu stuff again
 {
 	int choice = 0;
 	cin >> choice;
@@ -111,7 +111,7 @@ int main()
 			{
 				cout << "Choose array size (not bigger than 10) = ";
 				cin >> n;
-				if (n < 0 or n > 10) { cout << "Invalid value"; << endl; }
+				if (n < 0 or n > 10) { cout << "Invalid value" << endl; }
 				else
 				{
 					cout << "Choose array elements = ";
