@@ -194,8 +194,8 @@ int main()
 			}
 			case 2: //sorts arrays (idk why it doesn't work bruh)
 			{
-			    if (ElementsInX <= 0 or ElementsInY <= 0 or ElementsInX > 10 or ElementsInY > 10){
-				     cout << "The arrays need to have elements" << endl;
+			    if (ElementsInX <= 0 and ElementsInY <= 0 or ElementsInX > 10 and ElementsInY > 10){
+				     cout << "One of the arrays need to have elements" << endl;
 				     break;
                 }
                 else{
@@ -240,8 +240,8 @@ int main()
 			}
 			case 3: //outputs arrays
 			{
-                if (ElementsInX <= 0 or ElementsInY <= 0 or ElementsInX > 10 or ElementsInY > 10){
-				     cout << "The arrays need to have elements" << endl;
+                if (ElementsInX <= 0 and ElementsInY <= 0 or ElementsInX > 10 and ElementsInY > 10){
+				     cout << "One of the arrays need to have elements" << endl;
 				     break;
                 }
 
