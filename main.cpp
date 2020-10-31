@@ -192,13 +192,14 @@ int main()
 				}
 
 			}
-			case 2: //sorts arrays (idk why it doesn't work bruh)
+			case 2: //sorts arrays
 			{
-			    if (ElementsInX <= 0 and ElementsInY <= 0 or ElementsInX > 10 and ElementsInY > 10){
+			    if (ElementsInX <= 0 or ElementsInY <= 0 or ElementsInX > 10 or ElementsInY > 10){
 				     cout << "One of the arrays need to have elements" << endl;
 				     break;
-                }
-                else{
+			    }
+			}
+                	else{
 
                     cout << "Sort array x or y? (Enter '8' to go back): "<<endl;
                     cin >> choiceC;
