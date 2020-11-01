@@ -1,8 +1,3 @@
-// ConsoleApplication71.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-
-
 #include <iostream>
 using namespace std;
 
@@ -11,6 +6,13 @@ int mainMenu(int choice) //front end dev, main menu
 	int x;
 	cout << endl<<"List: \n 0. Declare arrays.\n 1. Operations with arrays.\n 2. Sort the arrays.\n 3. Output the arrays.\n 4. About us.\n 9. Quit \n\n";
 	cin >> x;
+	while(cin.fail()){
+        cout << "You haven't entered a number. Please enter a number: ";
+        cin.clear();
+        cin.ignore(1000,'\n');
+        cin >> x;
+        cout << endl;
+	}
 	return x;
 	
 }
@@ -90,6 +92,7 @@ void sortMenu(int* x, int n) //front end dev, menu stuff again
 		{
 			for (int j = 0; j < j - 1; j++) { if (x[i] > x[i + 1]) { swap(x[i], x[i + 1]); } }
 		}
+		cout << "Array sorted!" << endl;
 		break;
 	}
 	case 1: //sort from biggest to smallest
@@ -98,6 +101,7 @@ void sortMenu(int* x, int n) //front end dev, menu stuff again
 		{
 			for (int j = 0; j < j - 1; j++) { if (x[i] < x[i + 1]) { swap(x[i], x[i + 1]); } }
 		}
+		cout << "Array sorted!" << endl;
 		break;
 	}
 	default: cout << "Invalid input" << endl; break; //outputs on invalid input
@@ -189,13 +193,13 @@ int main()
 				case 'x':
 				{
 					if (n <= 0 or n > 10) { cout << "Array x has no elements" << endl; }
-					else { sortMenu(x, n); cout << "Array x sorted!" << endl; }
+					else { sortMenu(x, n); }
 					break;
 				}
 				case 'y':
 				{
 					if (m <= 0 or m > 10) { cout << "Array y has no elements" << endl; }
-					else { sortMenu(y, m); cout << "Array y sorted!" << endl; }
+					else { sortMenu(y, m); }
 					break;
 				}
 				case '8': break;
@@ -209,8 +213,27 @@ int main()
 				cin >> choiceC;
 				switch (choiceC)
 				{
-				case 'x': cout << "x = "; for (int i = 0; i < n; i++) { cout << x[i] << " "; } cout << endl; break;
-				case 'y': cout << "y = "; for (int i = 0; i < m; i++) { cout << y[i] << " "; } cout << endl; break;
+				case 'x': 
+				{
+					if (n > 0)
+					{
+						cout << "x = "; for (int i = 0; i < n; i++) { cout << x[i] << " "; } 
+						cout << endl; 
+					}
+					else { cout << "There's no elements in the array" << endl; }
+					break;
+				}
+				case 'y': 
+				{ 
+					if (m > 0)
+					{
+						cout << "y = "; for (int i = 0; i < m; i++) { cout << y[i] << " "; } 
+						cout << endl; 
+
+					}
+					else { cout << "There's no elements in the array" << endl; }
+					break;
+				}
 				case '8': break;
 				default: cout << "Invalid input" << endl; break;
 				}
@@ -220,8 +243,8 @@ int main()
 			case 9: break; //stops the program
 			default: cout << "Invalid input" << endl; //outputs for invalid input
 			}
-			n = sizeof(x) / sizeof(x[0]);
-			m = sizeof(y) / sizeof(y[0]);
+			if (n > 0) { n = sizeof(x) / sizeof(x[0]); }
+			if (m > 0) { m = sizeof(y) / sizeof(y[0]); }
 		}
 }
 	
