@@ -2,7 +2,7 @@
 using namespace std;
 
 
-int mainMenu(int choice) //front end dev, main menu
+int mainMenu() //front end dev, main menu
 {
 	int x;
 	cout << endl << "| List:                        |\n|  0. Declare arrays.          |\n|  1. Operations with arrays.  |\n|  2. Sort the arrays.         |\n|  3. Output the arrays.       |\n|  4. About us.                |\n|  9. Quit                     | \n\n";
@@ -18,7 +18,7 @@ int mainMenu(int choice) //front end dev, main menu
 
 }
 
-int operationMenu(int choice) //front end dev, a menu with operations
+int operationMenu() //front end dev, a menu with operations
 {
 	int x;
 	cout << "\n| 0. Outputs if a number is in both arrays.                   |\n| 1. Outputs if a number is at least in one of the arrays.    |\n| 2. Outputs all elements of array x that are not in array y. |\n| 3. Outputs all elements of array y that are not in array x. |\n| 8. Return to main menu.                                     |\n\n";
@@ -121,7 +121,7 @@ int main()
 
 	while (choice != 9)
 	{
-		choice = mainMenu(choice);
+		choice = mainMenu();
 		switch (choice) 
 		{
 		case 0: //declare arrays
@@ -180,7 +180,7 @@ int main()
 			}
 			else 
 			{
-				choice = operationMenu(choice);
+				choice = operationMenu();
 
 				switch (choice) 
 				{
