@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+
 int mainMenu(int choice) //front end dev, main menu
 {
 	int x;
@@ -23,9 +24,6 @@ int operationMenu(int choice) //front end dev, a menu with operations
 	cout << "\n| 0. Outputs if a number is in both arrays.                   |\n| 1. Outputs if a number is at least in one of the arrays.    |\n| 2. Outputs all elements of array x that are not in array y. |\n| 3. Outputs all elements of array y that are not in array x. |\n| 8. Return to main menu.                                     |\n\n";
 	cin >> x;
 	return x;
-
-
-
 }
 
 void xandy(int* x, int* y, int n, int m)
@@ -83,6 +81,7 @@ void yminusx(int* x, int* y, int n, int m)
 void sortMenu(int* x, int n) //front end dev, menu stuff again
 {
 	int choice = 0;
+	cout << "0. Sort from smallest to biggest. |\n1. Sort from biggest to smallest. | \n\n";
 	cin >> choice;
 	switch (choice)
 	{
@@ -90,18 +89,24 @@ void sortMenu(int* x, int n) //front end dev, menu stuff again
 	{
 		for (int i = 0; i < n; i++)
 		{
-			for (int j = 0; j < j - 1; j++) { if (x[i] > x[i + 1]) { swap(x[i], x[i + 1]); } }
+			for (int j = 0; j < n - 1; j++)
+			{
+				if (x[j] > x[j + 1]) { swap(x[j], x[j + 1]); }
+			}
 		}
-		cout << "Array sorted!" << endl;
+		cout << "Array Sorted!" << endl;
 		break;
 	}
 	case 1: //sort from biggest to smallest
 	{
 		for (int i = 0; i < n; i++)
 		{
-			for (int j = 0; j < j - 1; j++) { if (x[i] < x[i + 1]) { swap(x[i], x[i + 1]); } }
+			for (int j = 0; j < n - 1; j++) 
+			{ 
+				if (x[j] < x[j + 1]) { swap(x[j], x[j + 1]); } 
+			}
 		}
-		cout << "Array sorted!" << endl;
+		cout << "Array Sorted!" << endl;
 		break;
 	}
 	default: cout << "Invalid input" << endl; break; //outputs on invalid input
@@ -111,30 +116,29 @@ void sortMenu(int* x, int n) //front end dev, menu stuff again
 int main()
 {
 
-	int choice = 0, n = 0, m = 0, sameElement = 0, x[10], y[10]; char choiceC;
+	int choice = 0, ElementsInX = 0, ElementsInY = 0, sameElement = 0, x[10], y[10]; char choiceC;
 	cout << "--------------WELCOME----------------" << endl << endl;
-
 
 	while (choice != 9)
 	{
 		choice = mainMenu(choice);
-		switch (choice)
+		switch (choice) 
 		{
 		case 0: //declare arrays
 		{
-			cout << "Change array x or y? (Enter '8' to go back): " ;
+			cout << "Change array x or y? (Enter '8' to go back): " << endl;
 			cin >> choiceC;
 			switch (choiceC)
 			{
 			case 'x':
 			{
-				cout << "Choose array size (not bigger than 10) = " ;
-				cin >> n;
-				if (n < 0 or n > 10) { cout << "Invalid value" << endl; }
+				cout << "Choose array size (not bigger than 10) = " << endl;
+				cin >> ElementsInX;
+				if (ElementsInX < 0 or ElementsInX > 10) { cout << "Invalid value" << endl; }
 				else
 				{
 					cout << "Choose array elements = ";
-					for (int i = 0; i < n; i++)
+					for (int i = 0; i < ElementsInX; i++)
 					{
 						cin >> x[i];
 						for (int j = 0; j <= i; j++) { if (x[i] == x[j]) { sameElement++; } }
@@ -146,13 +150,13 @@ int main()
 			}
 			case 'y':
 			{
-				cout << "Choose array size (not bigger than 10) = " ;
-				cin >> m;
-				if (m < 0 or m > 10) { cout << "Invalid value" << endl; }
+				cout << "Choose array size (not bigger than 10) = " << endl;
+				cin >> ElementsInY;
+				if (ElementsInY < 0 or ElementsInY > 10) { cout << "Invalid value" << endl; }
 				else
 				{
-					cout << "Choose array elements = " ;
-					for (int i = 0; i < m; i++)
+					cout << "Choose array elements = " << endl;;
+					for (int i = 0; i < ElementsInY; i++)
 					{
 						cin >> y[i];
 						for (int j = 0; j <= i; j++) { if (y[i] == y[j]) { sameElement++; } }
@@ -168,23 +172,29 @@ int main()
 		}
 		case 1: //operations with arrays
 		{
-			if (n <= 0 or m <= 0 or n > 10 or m > 10) { cout << "Both arrays need to have elements" << endl; }
-			else
+
+			if (ElementsInX <= 0 or ElementsInY <= 0 or ElementsInX > 10 or ElementsInY > 10) 
+			{
+				cout << "Both arrays need to have elements" << endl;
+				break;
+			}
+			else 
 			{
 				choice = operationMenu(choice);
-				switch (choice)
+
+				switch (choice) 
 				{
-				case 0: xandy(x, y, n, m); break; //outputs if a number is in both
-				case 1: xplusy(x, y, n, m); break; //outputs if a number is in at least one of them
-				case 2: xminusy(x, y, n, m); break; //outputs if a number is not in y
-				case 3: yminusx(x, y, n, m); break; //outputs if a number is not in x
+				case 0: xandy(x, y, ElementsInX, ElementsInY); break; //outputs if a number is in both
+				case 1: xplusy(x, y, ElementsInX, ElementsInY); break; //outputs if a number is in at least one of them
+				case 2: xminusy(x, y, ElementsInX, ElementsInY); break; //outputs if a number is not in y
+				case 3: yminusx(x, y, ElementsInX, ElementsInY); break; //outputs if a number is not in x
 				case 8: break; //goes back to main menu
 				default: cout << "Invalid input" << endl; break; //outputs for invalid input
 				}
+				break;
 			}
-			break;
 		}
-		case 2: //sorts arrays (idk why it doesn't work bruh)
+		case 2: //sorts arrays
 		{
 			cout << "Sort array x or y? (Enter '8' to go back): " << endl;
 			cin >> choiceC;
@@ -192,14 +202,14 @@ int main()
 			{
 			case 'x':
 			{
-				if (n <= 0 or n > 10) { cout << "Array x has no elements" << endl; }
-				else { sortMenu(x, n); }
+				if (ElementsInX <= 0 or ElementsInX > 10) { cout << "Array x has no elements" << endl; }
+				else { sortMenu(x, ElementsInX); }
 				break;
 			}
 			case 'y':
 			{
-				if (m <= 0 or m > 10) { cout << "Array y has no elements" << endl; }
-				else { sortMenu(y, m); }
+				if (ElementsInY <= 0 or ElementsInY > 10) { cout << "Array y has no elements" << endl; }
+				else { sortMenu(y, ElementsInY); }
 				break;
 			}
 			case '8': break;
@@ -211,50 +221,53 @@ int main()
 		{
 			cout << "Output array x or y? (Enter '8' to go back): " << endl;
 			cin >> choiceC;
+
 			switch (choiceC)
 			{
+
 			case 'x':
 			{
-				if (n > 0)
+				if (ElementsInX <= 0 or ElementsInX > 10) { cout << "There's no elements in array x" << endl; }
+				else
 				{
-					cout << "x = "; for (int i = 0; i < n; i++) { cout << x[i] << " "; }
+					cout << "x = ";
+					for (int i = 0; i < ElementsInX; i++) { cout << x[i] << " "; }
 					cout << endl;
 				}
-				else { cout << "There's no elements in the array" << endl; }
 				break;
 			}
+
 			case 'y':
 			{
-				if (m > 0)
+				if (ElementsInY <= 0 or ElementsInY > 10) { cout << "There's no elements in array y" << endl; }
 				{
-					cout << "y = "; for (int i = 0; i < m; i++) { cout << y[i] << " "; }
+					cout << "y = ";
+					for (int i = 0; i < ElementsInY; i++) { cout << y[i] << " "; }
 					cout << endl;
-
 				}
-				else { cout << "There's no elements in the array" << endl; }
 				break;
 			}
+
 			case '8': break;
+
 			default: cout << "Invalid input" << endl; break;
 			}
 			break;
 		}
-		case 4: //outputs the team members (WIP), front end dev here
+		case 4: //outputs the team members, front end dev here
 		{
-			cout << endl << "SCRUM TRAINER - Nevena Pavlova" << endl;
-			cout << "-------------------------------------" << endl;
-			cout << "C++ DEVELOPER - Teodor Angelov" << endl;
-			cout << "-------------------------------------" << endl;
-			cout << "FRONT END DEVELOPER - Alexander Yanev" << endl;
-			cout << "-------------------------------------" << endl;
-			cout << "CODE CHECK - Peter Borisov" << endl;
-			cout << "-------------------------------------" << endl;
+			cout << endl << "SCRUM TRAINER - Nevena Pavlova 10V" << endl;
+			cout << "------------------------------------------" << endl;
+			cout << "C++ DEVELOPER - Teodor Angelov 10V" << endl;
+			cout << "------------------------------------------" << endl;
+			cout << "FRONT END DEVELOPER - Alexander Yanev 10V" << endl;
+			cout << "------------------------------------------" << endl;
+			cout << "CODE CHECKER - Peter Borisov 10B" << endl;
+			cout << "------------------------------------------" << endl;
 			break;
 		}
 		case 9: break; //stops the program
 		default: cout << "Invalid input" << endl; //outputs for invalid input
 		}
-		if (n > 0) { n = sizeof(x) / sizeof(x[0]); }
-		if (m > 0) { m = sizeof(y) / sizeof(y[0]); }
 	}
 }
